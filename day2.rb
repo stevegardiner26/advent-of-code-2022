@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-
+# TODO: Optimize for Efficiency and Cleanliness
 # Part 1
 input = File.read('inputs/day2.txt')
 rounds = input.split(/\n/)
