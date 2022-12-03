@@ -1,36 +1,16 @@
 # frozen_string_literal: true
-# TODO: Optimize for Efficiency and Cleanliness
+
 # Part 1
 input = File.read('inputs/day2.txt')
 rounds = input.split(/\n/)
 score = 0
-
+keys = {A: 1, B: 2, C: 3, X: 1, Y: 2, Z: 3}
 rounds.each do |round|
-  opponent, you = round.split(" ")
-  if you == "X"
-    if opponent == "A"
-      score += 3
-    elsif opponent == "C"
-      score += 6
-    end
-    score += 1
-  elsif you == "Y"
-    if opponent == "A"
-      score += 6
-    elsif opponent == "B"
-      score += 3
-    end
-    score += 2
-  elsif you == "Z"
-    if opponent == "B"
-      score += 6
-    elsif opponent == "C"
-      score += 3
-    end
-    score += 3
-  end
+  opponent, you = round.split(" ").map{|i| keys[i.to_sym]}
+  score += 6 if (you == 1 && opponent == 3) || (you == 2 && opponent == 1) || (you == 3 && opponent == 2)
+  score += 3 if opponent == you
+  score += you
 end
-
 puts score
 
 # Part 2
